@@ -1,0 +1,21 @@
+BootStrap: docker
+From: tensorflow/tensorflow:latest-gpu-py3
+
+%help
+   This Singularity definition contains a TensorFlow-gpu installation
+
+pip install scipy==1.2.1
+   apt-get -y install libsm6 libxrender1 libxext6 libx11-6
+   pip install six==1.12.0
+   pip install numpy==1.15.4
+   pip install pandas==0.24.2
+   pip install matplotlib==3.0.2
+   pip install keras==2.2.4
+   pip install scikit-learn==0.20.2
+   pip install opencv-python==3.4.2.17
+
+%environment
+   export LC_ALL=C
+
+%runscript
+
