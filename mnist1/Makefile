@@ -9,3 +9,12 @@ image:
 
 clean:
 	rm -rf build.def output_image.sif
+
+queue: 
+	squeue -u ${USER}
+
+delete: 
+	rm -f *.out *.err	
+
+submit:
+	sbatch slurm-v100.sh

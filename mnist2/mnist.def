@@ -8,6 +8,7 @@ From: /sylabsdemo/containers/tensorflow:latest-gpu-signed
 	pip install pandas
 	pip install scikit-learn
 	pip install opencv-python
+	pip install cloudmesh-cmd5
 	pip install cloudmesh-common
 
 

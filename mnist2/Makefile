@@ -15,3 +15,6 @@ queue:
 
 delete: 
 	rm -f *.out *.err	
+
+submit:
+	sbatch slurm-v100.sh
