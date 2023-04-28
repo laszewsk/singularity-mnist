@@ -1,7 +1,11 @@
+BUILD=mnist.def
+IMAGE=mnist.sif
+
 image:
-	sudo singularity build mnist.sif mnist.def
+	cp ${BUILD} build.def
+	sudo /opt/singularity/3.7.1/bin/singularity build output_image.sif build.def
+	cp output_image.sif ${IMAGE}
+	make -f Makefile clean
 
-copy:
-	time scp mnist.def rivanna:
-	time scp mnist.sif rivanna:
-
+clean:
+	rm -rf build.def output_image.sif
