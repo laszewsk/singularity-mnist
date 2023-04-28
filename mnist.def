@@ -5,7 +5,8 @@ From: tensorflow/tensorflow:latest-gpu-py3
     This Singularity definition contains a TensorFlow-gpu installation
 
 %post
-    pip install scipy==1.2.1
+    pip install scipy==1.4.1
+    apt-get update
     apt-get -y install libsm6 libxrender1 libxext6 libx11-6
     pip install six==1.12.0
     pip install numpy==1.15.4
