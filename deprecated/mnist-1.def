@@ -19,5 +19,6 @@ pip install scipy==1.2.1
 %environment
    export LC_ALL=C
 
+%runscript
 
 
