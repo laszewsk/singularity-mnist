@@ -13,12 +13,12 @@ import time
 
 stopwatch= StopWatch()
 
-stopwatch.start("Total runtime")
+stopwatch.start("Total runtime")## stop watch for total time
 
 
 mnist = tf.keras.datasets.mnist
 
-stopwatch.start("Loading in Data")
+stopwatch.start("Loading in Data")## stop watch for loading in data
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
@@ -65,7 +65,7 @@ model.compile(optimizer='adam',
 Use the `Model.fit` method to adjust your model parameters and minimize the loss: 
 """
 
-stopwatch.start("Model Fitting")
+stopwatch.start("Model Fitting") ## stop watch for model fitting
 
 model.fit(x_train, y_train, epochs=5)
 
@@ -73,7 +73,7 @@ stopwatch.stop("Model Fitting")
 
 """The `Model.evaluate` method checks the model's performance, usually on a [validation set](https://developers.google.com/machine-learning/glossary#validation-set) or [test set](https://developers.google.com/machine-learning/glossary#test-set)."""
 
-stopwatch.start("Model Evaluation")
+stopwatch.start("Model Evaluation") ## stopwatch for model evaluation
 model.evaluate(x_test,  y_test, verbose=2)
 
 stopwatch.stop("Model Evaluation")
