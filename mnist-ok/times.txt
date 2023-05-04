@@ -1,0 +1,16 @@
+
+V-100
+Total runtime: 26.09s
+Loading Data : 0.223s
+Fitting Data : 21.199s
+Evaluation   : 0.815s
+
+
+K-80
+Total runtime: 28.446s 
+Loading Data : 0.295s 
+Model Fitting: 21.27s  
+Evaluation   : 0.85s
+
+  
+
