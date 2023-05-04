@@ -14,7 +14,19 @@ queue:
 	squeue -u ${USER}
 
 delete: 
-	rm -f *.out *.err	
+	rm -f *.out *.err
 
-submit:
+submit_v100:
 	sbatch slurm-v100.sh
+
+submit_a100:
+	sbatch slurm-a100.sh
+
+submit_k80:
+	sbatch slurm-k80.sh
+
+submit_rtx3090:
+	sbatch slurm-rtx3090.sh
+
+submit_p100:
+	sbatch slurm-p100.sh
