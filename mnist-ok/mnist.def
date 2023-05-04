@@ -13,6 +13,9 @@ From: /share/resources/containers/singularity/tensorflow-2.10.0.sif
 	pip install scikit-learn
 	pip install opencv-python
 	pip install cloudmesh-common
+	pip install jupyter
+	pip install jupyterlab
+	pip install papermill
 
 
 
