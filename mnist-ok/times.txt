@@ -14,11 +14,17 @@ Evaluation   : 0.85s
 
 
 RTX-3090
-Total runtime:381.072s
-Loading Data :3.074s 
-Model Fitting:273.09s
-Evaluation   :13.346s
+Total runtime: 381.072s
+Loading Data : 3.074s 
+Model Fitting: 273.09s
+Evaluation   : 13.346s
 
+P-100
+
+Total runtime: 29.06s 
+Loading Data : 0.277s 
+Model Fitting: 21.259s 
+Evaluation   : 0.836s 
  
 
 
