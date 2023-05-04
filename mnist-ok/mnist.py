@@ -60,6 +60,13 @@ Import TensorFlow into your program to get started:
 import tensorflow as tf
 print("TensorFlow version:", tf.__version__)
 
+#from cloudmesh.common.StopWatch import StopWatch
+import time 
+
+
+#stopwatch = StopWatch()
+
+
 """If you are following along in your own development environment, rather than [Colab](https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/quickstart/beginner.ipynb), see the [install guide](https://www.tensorflow.org/install) for setting up TensorFlow for development.
 
 Note: Make sure you have upgraded to the latest `pip` to install the TensorFlow 2 package if you are using your own development environment. See the [install guide](https://www.tensorflow.org/install) for details.
@@ -70,6 +77,10 @@ Load and prepare the [MNIST dataset](http://yann.lecun.com/exdb/mnist/). The pix
 """
 
 mnist = tf.keras.datasets.mnist
+
+#stopwatch.start("total")
+
+
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 x_train, x_test = x_train / 255.0, x_test / 255.0
@@ -140,6 +151,10 @@ probability_model = tf.keras.Sequential([
 ])
 
 probability_model(x_test[:5])
+
+#stopwatch.stop("total")
+
+#print("Total seconds", stopwatch.get("total"))
 
 """## Conclusion
 
