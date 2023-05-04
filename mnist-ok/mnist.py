@@ -1,24 +1,29 @@
 ## Set up TensorFlow
 #Import TensorFlow into your program to get started:
 
+
 import tensorflow as tf
 print("TensorFlow version:", tf.__version__)
 
-#from cloudmesh.common.StopWatch import StopWatch
+from cloudmesh.common.StopWatch import StopWatch
 import time 
 
 
-#stopwatch = StopWatch()
-
-
 ## Load a dataset
+
+stopwatch= StopWatch()
+
+stopwatch.start("Total runtime")
+
+
 mnist = tf.keras.datasets.mnist
 
-#stopwatch.start("total")
-
-
+stopwatch.start("Loading in Data")
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
+
+stopwatch.stop("Loading in Data")
+
 x_train, x_test = x_train / 255.0, x_test / 255.0
 
 """## Build a machine learning model
@@ -32,7 +37,6 @@ model = tf.keras.models.Sequential([
   tf.keras.layers.Dropout(0.2),
   tf.keras.layers.Dense(10)
 ])
-
 
 predictions = model(x_train[:1]).numpy()
 predictions
@@ -61,20 +65,30 @@ model.compile(optimizer='adam',
 Use the `Model.fit` method to adjust your model parameters and minimize the loss: 
 """
 
+stopwatch.start("Model Fitting")
+
 model.fit(x_train, y_train, epochs=5)
+
+stopwatch.stop("Model Fitting")
 
 """The `Model.evaluate` method checks the model's performance, usually on a [validation set](https://developers.google.com/machine-learning/glossary#validation-set) or [test set](https://developers.google.com/machine-learning/glossary#test-set)."""
 
+stopwatch.start("Model Evaluation")
 model.evaluate(x_test,  y_test, verbose=2)
 
+stopwatch.stop("Model Evaluation")
 
 probability_model = tf.keras.Sequential([
   model,
   tf.keras.layers.Softmax()
 ])
 
+
+
 probability_model(x_test[:5])
 
-#stopwatch.stop("total")
 
-#print("Total seconds", stopwatch.get("total"))
+
+stopwatch.stop("Total runtime")
+
+stopwatch.benchmark()
