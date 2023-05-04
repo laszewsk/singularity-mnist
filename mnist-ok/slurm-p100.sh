@@ -3,7 +3,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --time=01:00:00
-#SBATCH --partition=bii-gpu
+#SBATCH --partition=gpu
 #SBATCH --account=nssac_students
 #SBATCH --gres=gpu:p100:1
 #SBATCH --job-name=mnist-1-p100

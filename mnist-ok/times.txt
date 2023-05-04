@@ -12,5 +12,15 @@ Loading Data : 0.295s
 Model Fitting: 21.27s  
 Evaluation   : 0.85s
 
+
+RTX-3090
+Total runtime:381.072s
+Loading Data :3.074s 
+Model Fitting:273.09s
+Evaluation   :13.346s
+
+ 
+
+
   
 
