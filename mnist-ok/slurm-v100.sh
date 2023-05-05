@@ -16,3 +16,7 @@ singularity exec --nv mnist.sif python mnist.py
 
 echo "==================================================="
 seff $SLURM_JOB_ID
+
+cms gpu system
+cms gpu status
+cms gpu count
