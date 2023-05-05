@@ -10,11 +10,24 @@ image:
 clean:
 	rm -rf build.def output_image.sif
 
-queue: 
-	squeue -u ${USER}
+queue: watch
 
 delete: 
-	rm -f *.out *.err	
+	rm -f *.out *.err
+	rm *_output.ipynb
 
 submit:
 	sbatch slurm-v100-ipynb.sh
+
+watch: status
+
+status:
+	watch squeue --format=\"%.18i %.9P %.50j %.8u %.8T %.10M %.9l %.6D %R\" --me
+
+run:
+	singularity exec --nv mnist.sif papermill mnist.ipynb mnist_output.ipynb
+
+shell:
+	singularity shell --nv mnist.sif
+
+all: delete clean image submit watch

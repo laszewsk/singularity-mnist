@@ -10,8 +10,12 @@ image:
 clean:
 	rm -rf build.def output_image.sif
 
-queue: 
-	squeue -u ${USER}
+queue: watch
+
+watch: status
+
+status:
+	watch squeue --format=\"%.18i %.9P %.50j %.8u %.8T %.10M %.9l %.6D %R\" --me
 
 delete: 
 	rm -f *.out *.err

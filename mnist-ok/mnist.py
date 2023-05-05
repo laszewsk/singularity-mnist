@@ -6,12 +6,11 @@ import tensorflow as tf
 print("TensorFlow version:", tf.__version__)
 
 from cloudmesh.common.StopWatch import StopWatch
-import time 
 
 
 # Load a dataset
 
-stopwatch= StopWatch()
+stopwatch = StopWatch()
 
 stopwatch.start("Total runtime")## stop watch for total time
 

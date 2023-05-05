@@ -12,7 +12,7 @@
 
 nvidia-smi
 
-singularity exec --nv mnist.sif papermill python mnist.ipynb
+singularity exec --nv mnist.sif papermill mnist.ipynb mnist_output.ipynb
 
 echo "==================================================="
 seff $SLURM_JOB_ID
