@@ -10,18 +10,16 @@ from cloudmesh.common.StopWatch import StopWatch
 
 # Load a dataset
 
-stopwatch = StopWatch()
-
-stopwatch.start("Total runtime")## stop watch for total time
+StopWatch.start("Total runtime")## stop watch for total time
 
 
 mnist = tf.keras.datasets.mnist
 
-stopwatch.start("Loading in Data")## stop watch for loading in data
+StopWatch.start("Loading in Data")## stop watch for loading in data
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
-stopwatch.stop("Loading in Data")
+StopWatch.stop("Loading in Data")
 
 x_train, x_test = x_train / 255.0, x_test / 255.0
 
@@ -64,18 +62,18 @@ model.compile(optimizer='adam',
 Use the `Model.fit` method to adjust your model parameters and minimize the loss: 
 """
 
-stopwatch.start("Model Fitting") ## stop watch for model fitting
+StopWatch.start("Model Fitting") ## stop watch for model fitting
 
 model.fit(x_train, y_train, epochs=5)
 
-stopwatch.stop("Model Fitting")
+StopWatch.stop("Model Fitting")
 
 """The `Model.evaluate` method checks the model's performance, usually on a [validation set](https://developers.google.com/machine-learning/glossary#validation-set) or [test set](https://developers.google.com/machine-learning/glossary#test-set)."""
 
-stopwatch.start("Model Evaluation") ## stopwatch for model evaluation
+StopWatch.start("Model Evaluation") ## StopWatch for model evaluation
 model.evaluate(x_test,  y_test, verbose=2)
 
-stopwatch.stop("Model Evaluation")
+StopWatch.stop("Model Evaluation")
 
 probability_model = tf.keras.Sequential([
   model,
@@ -88,6 +86,6 @@ probability_model(x_test[:5])
 
 
 
-stopwatch.stop("Total runtime")
+StopWatch.stop("Total runtime")
 
-stopwatch.benchmark()
+StopWatch.benchmark()
