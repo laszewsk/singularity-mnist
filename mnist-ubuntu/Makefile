@@ -28,3 +28,6 @@ docker-mnist:
 	docker run --gpus all --ulimit memlock=-1 mnist-docker which python
 	docker run --gpus all --ulimit memlock=-1 mnist-docker python --version
 	docker run --volume $(PWD):/workdir --gpus all --ulimit memlock=-1 mnist-docker python /workdir/mnist.py
+
+from-docker:
+	sudo singularity build mnist-docker-local.sif mnist-local.def
