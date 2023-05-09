@@ -17,7 +17,7 @@ delete:
 
 
 docker-image:
-	tim docker build -t local/mnist-docker -f Dockerfile .
+	time docker build -t local/mnist-docker -f Dockerfile .
 
 docker-run:
 #	docker run -it --gpus all --ipc=host --ulimit memlock=-1 stack=67108864 mnist-docker
