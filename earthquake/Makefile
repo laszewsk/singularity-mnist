@@ -12,12 +12,12 @@ clean:
 
 queue: watch
 
-delete: 
+delete:
 	rm -f *.out *.err
 	rm -f *_output.ipynb
 
 submit:
-	sbatch slurm-v100-ipynb.sh
+	sbatch slurm-a100-ipynb.sh
 
 watch: status
 
