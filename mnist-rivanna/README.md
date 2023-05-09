@@ -4,32 +4,48 @@ missing
 
 
 V100
-Total runtime: 26.09s
-Loading Data : 0.223s
-Fitting Data : 21.199s
-Evaluation   : 0.815s
++------------------+----------+--------+
+| Name             | Status   |   Time |
+|------------------+----------+--------+
+| Total runtime    | ok       | 28.287 |
+| Loading in Data  | ok       |  0.306 |
+| Model Fitting    | ok       | 21.199 |
+| Model Evaluation | ok       |  0.815 |
++------------------+----------+--------+
 
 
 K80
-Total runtime: 28.446s 
-Loading Data : 0.295s 
-Model Fitting: 21.27s  
-Evaluation   : 0.85s
++------------------+----------+--------+
+| Name             | Status   |   Time |
+|------------------+----------+--------+
+| Total runtime    | ok       | 28.352 |
+| Loading in Data  | ok       |  0.308 |
+| Model Fitting    | ok       | 21.395 |
+| Model Evaluation | ok       |  0.878 |
++------------------+----------+--------+
 
 
 RTX3090
-Total runtime: 381.072s
-Loading Data : 3.074s 
-Model Fitting: 273.09s
-Evaluation   : 13.346s
++------------------+----------+--------+
+| Name             | Status   |   Time |
+|------------------+----------+--------+
+| Total runtime    | ok       | 28.555 |
+| Loading in Data  | ok       |  0.243 |
+| Model Fitting    | ok       | 21.073 |
+| Model Evaluation | ok       |  0.796 |
++------------------+----------+--------+
 
 
 P100
++------------------+----------+--------+
+| Name             | Status   |   Time |
+|------------------+----------+--------+
+| Total runtime    | ok       | 28.092 |
+| Loading in Data  | ok       |  0.274 |
+| Model Fitting    | ok       | 21.263 |
+| Model Evaluation | ok       |  0.837 |
++------------------+----------+--------+
 
-Total runtime: 29.06s 
-Loading Data : 0.277s 
-Model Fitting: 21.259s 
-Evaluation   : 0.836s 
  
 
 

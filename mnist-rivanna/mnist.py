@@ -3,11 +3,17 @@
 
 
 import tensorflow as tf
+from cloudmesh.common.util import banner
 print("TensorFlow version:", tf.__version__)
 
 from cloudmesh.common.StopWatch import StopWatch
 
 print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+print() # empty line
+if len(tf.config.list_physical_devices('GPU')) == 0:
+    banner('NO GPU AVAILABLE!')
+else:
+    banner('USING GPU!')
 
 # Load a dataset
 

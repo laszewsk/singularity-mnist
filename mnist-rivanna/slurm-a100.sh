@@ -7,9 +7,9 @@
 #SBATCH --account=bii_dsc_community
 #SBATCH --reservation=bi_fox_dgx
 #SBATCH --gres=gpu:a100:1
-#SBATCH --job-name=mnist-1-a100
-#SBATCH --output=%u-%j.out
-#SBATCH --error=%u-%j.err
+#SBATCH --job-name=mnist-a100
+#SBATCH --output=a100-%u-%j.out
+#SBATCH --error=a100-%u-%j.err
 
 hostname
 echo "SLURM_CPUS_ON_NODE: $SLURM_CPUS_ON_NODE"
@@ -23,12 +23,17 @@ echo "SLURM_JOB_RESERVATION: $SLURM_JOB_RESERVATION"
 echo "SLURM_SUBMIT_HOST: $SLURM_SUBMIT_HOST"
 
 echo "Working in $(pwd)"
-echo "Repository Revision: $(git rev-parse HEAD)"
+# echo "Repository Revision: $(git rev-parse HEAD)"
 # echo "Python Version: $(singularity exec mnist.sif python --version)"
-echo "Running on host: $(hostname -a)"
+# echo "Running on host: $(hostname -a)"
 
 nvidia-smi
 
+echo "hello im here"
+which singularity
+echo " hmmmm"
+singularity exec mnist.sif python --version
+singularity exec mnist.sif python -c "print('hello tehere')"
 singularity exec --nv mnist.sif python mnist.py
 
 echo "==================================================="
