@@ -1,6 +1,10 @@
-FROM: tensorflow/tensorflow:latest-gpu-py3
+FROM nvcr.io/nvidia/tensorflow:23.04-tf2-py3
 
-RUN apt-get update && apt-get upgrade -y
+# RUN rm /etc/apt/sources.list.d/cuda.list
+# RUN rm /etc/apt/sources.list.d/nvidia-ml.list
+
+RUN apt update
+RUN apt upgrade -y
 
 RUN pip install pip -U
 RUN pip install numpy

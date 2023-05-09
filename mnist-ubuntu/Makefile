@@ -15,3 +15,6 @@ run:
 delete: 
 	rm -f *.out *.err
 
+
+docker-image:
+	docker build -t mnist-docker -f Dockerfile .
