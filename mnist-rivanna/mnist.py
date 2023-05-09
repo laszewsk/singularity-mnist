@@ -7,6 +7,7 @@ print("TensorFlow version:", tf.__version__)
 
 from cloudmesh.common.StopWatch import StopWatch
 
+print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
 
 # Load a dataset
 

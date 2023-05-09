@@ -1,7 +1,6 @@
 BUILD=mnist.def
 IMAGE=mnist.sif
 
-
 image:
 	cp ${BUILD} build.def
 	sudo /opt/singularity/3.7.1/bin/singularity build output_image.sif build.def
@@ -42,3 +41,5 @@ submit_rtx3090:
 
 submit_p100:
 	sbatch slurm-p100.sh
+
+all: delete clean image submit_a100 watch
