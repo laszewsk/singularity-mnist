@@ -25,8 +25,8 @@ docker-run:
 
 
 docker-mnist:
-	docker run --gpus all --ulimit memlock=-1 local/mnist-docker which python
-	docker run --gpus all --ulimit memlock=-1 local/mnist-docker python --version
+	# docker run --gpus all --ulimit memlock=-1 local/mnist-docker which python
+	# docker run --gpus all --ulimit memlock=-1 local/mnist-docker python --version
 	time docker run --volume $(PWD):/workdir --gpus all --ulimit memlock=-1 local/mnist-docker python /workdir/mnist.py
 
 from-docker:
@@ -36,3 +36,14 @@ convert:
 	pip install spython
 	spython recipe Dockerfile > s.def
 	cat s.def
+
+benchmark:
+	@echo ============================
+	@echo DOCKERFILE
+	@echo ============================
+	@ make -f Makefile docker-mnist
+	@echo
+	@echo ============================
+	@echo SINGULARITY
+	@echo ============================
+	@ make -f Makefile run
