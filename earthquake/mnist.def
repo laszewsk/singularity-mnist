@@ -1,0 +1,31 @@
+Bootstrap: localimage
+From: /share/resources/containers/singularity/tensorflow-2.10.0.sif
+#From: /share/resources/containers/singularity/tensorflow-2.4.1.sif
+#From: /share/resources/containers/singularity/tensorflow_23.03-tf1-py3.sif
+#From: /share/resources/containers/singularity/tensorflow_23.03-tf2-py3.sif
+
+#Bootstrap: docker
+#From:  nvcr.io/nvidia/tensorflow:23.04-tf2-py3
+
+%post
+	pip install pip -U
+	pip install numpy
+	pip install matplotlib
+	pip install pandas
+	pip install scikit-learn
+	pip install opencv-python
+	pip install cloudmesh-common
+	pip install jupyter
+	pip install jupyterlab
+	pip install papermill
+
+    pip install cloudmesh-gpu keras psutil scipy \
+        tabulate tensorflow_datasets==4.2.0 tqdm wheel \
+        ipywidgets jupyter-autotime ipython-autotime
+    pip install tensorflow==2.8.0
+    pip install tensorflow-metadata==1.8.0
+    pip install googleapis-common-protos==1.55.0
+    pip install protobuf==3.19.4
+
+
+

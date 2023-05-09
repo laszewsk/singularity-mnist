@@ -14,7 +14,7 @@ queue: watch
 
 delete: 
 	rm -f *.out *.err
-	rm *_output.ipynb
+	rm -f *_output.ipynb
 
 submit:
 	sbatch slurm-v100-ipynb.sh

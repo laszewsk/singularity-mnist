@@ -3,9 +3,52 @@
 
 
 import tensorflow as tf
+from cloudmesh.common.util import banner
 print("TensorFlow version:", tf.__version__)
 
 from cloudmesh.common.StopWatch import StopWatch
+# from cloudmesh.gpu.gpu import Gpu
+
+print(tf.test.gpu_device_name())
+gpu_devices = tf.config.list_physical_devices('GPU')
+if gpu_devices:
+    details = tf.config.experimental.get_device_details(gpu_devices[0])
+    gpu_name = details.get('device_name', 'Unknown GPU')
+    print(gpu_name)
+    card = gpu_name
+else:
+    card = 'no gpu'
+
+# try:
+#     import json
+#     gpu = Gpu()
+#     result = gpu.system()
+#     result = json.dumps(result, indent=2)
+#     print(result)
+#
+#     result = gpu.status()
+#     result = json.dumps(result, indent=2)
+#     print(result)
+#
+#     result = gpu.count
+#     result = json.dumps(result, indent=2)
+#     print(result)
+#
+#     result = gpu.smi()
+#     result = json.dumps(result, indent=2)
+#     print(result)
+#
+# except:
+#     print('fail')
+
+
+print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+print() # empty line
+if len(tf.config.list_physical_devices('GPU')) == 0:
+    banner('NO GPU AVAILABLE!')
+else:
+    banner('USING GPU!')
+
 
 
 # Load a dataset
@@ -88,4 +131,5 @@ probability_model(x_test[:5])
 
 StopWatch.stop("Total runtime")
 
-StopWatch.benchmark()
+
+StopWatch.benchmark(tag=card)
