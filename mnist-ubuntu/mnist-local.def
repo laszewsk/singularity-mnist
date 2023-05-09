@@ -1,0 +1,14 @@
+Bootstrap: docker
+From: mnist-docker
+
+%post
+	pip install pip -U
+	pip install numpy
+	pip install matplotlib
+	pip install pandas
+	pip install scikit-learn
+	pip install opencv-python
+	pip install cloudmesh-common
+	pip install cloudmesh-gpu
+
+
