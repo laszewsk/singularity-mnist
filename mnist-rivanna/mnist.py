@@ -9,6 +9,15 @@ print("TensorFlow version:", tf.__version__)
 from cloudmesh.common.StopWatch import StopWatch
 
 print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+
+card = 'none'
+gpu_devices = tf.config.list_physical_devices('GPU')
+if gpu_devices:
+    details = tf.config.experimental.get_device_details(gpu_devices[0])
+    card = details.get('device_name', 'Unknown GPU')
+
+banner(f'the card is {card}')
+
 print() # empty line
 if len(tf.config.list_physical_devices('GPU')) == 0:
     banner('NO GPU AVAILABLE!')
@@ -95,4 +104,4 @@ probability_model(x_test[:5])
 
 StopWatch.stop("Total runtime")
 
-StopWatch.benchmark()
+StopWatch.benchmark(tag=card)
