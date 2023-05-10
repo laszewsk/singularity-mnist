@@ -8,6 +8,7 @@ CUDA Version: 12.1
 
 singularity
 
+```
 +------------------+----------+--------+
 | Name             | Status   |   Time |
 |------------------+----------+--------+
@@ -16,10 +17,11 @@ singularity
 | Model Fitting    | ok       |  7.502 |
 | Model Evaluation | ok       |  0.238 |
 +------------------+----------+--------+
-
+```
 
 Dockerfile
 
+```
 +------------------+----------+--------+
 | Name             | Status   |   Time |
 |------------------+----------+--------+
@@ -28,12 +30,13 @@ Dockerfile
 | Model Fitting    | ok       | 12.852 |
 | Model Evaluation | ok       |  0.318 |
 +------------------+----------+--------+
-
+```
 
 DGX - A100
 
 Singularity - no GPU
 
+```
 +------------------+----------+--------+
 | Name             | Status   |   Time |
 |------------------+----------+--------+
@@ -42,9 +45,11 @@ Singularity - no GPU
 | Model Fitting    | ok       | 11.192 |
 | Model Evaluation | ok       |  0.242 |
 +------------------+----------+--------+
+```
 
 Singularity - With GPU
 
+```
 +------------------+----------+--------+
 | Name             | Status   |   Time |
 |------------------+----------+--------+
@@ -53,7 +58,7 @@ Singularity - With GPU
 | Model Fitting    | ok       |  9.578 |
 | Model Evaluation | ok       |  0.331 |
 +------------------+----------+--------+
-
+```
 
 Docker
 
@@ -61,6 +66,7 @@ NVIDIA-SMI 470.129.06
 Driver Version: 470.129.06
 CUDA Version: 11.4
 
+```
 +------------------+----------+--------+
 | Name             | Status   |   Time |
 |------------------+----------+--------+
@@ -69,3 +75,4 @@ CUDA Version: 11.4
 | Model Fitting    | ok       | 13.316 |
 | Model Evaluation | ok       |  0.477 |
 +------------------+----------+--------+
+```
