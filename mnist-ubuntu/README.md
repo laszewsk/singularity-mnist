@@ -30,7 +30,7 @@ Dockerfile
 +------------------+----------+--------+
 
 
-DGX
+DGX - A100
 
 Singularity - no GPU
 
