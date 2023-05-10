@@ -27,10 +27,11 @@ delete:
 
 
 docker-image:
-	time docker build -t local/mnist-docker -f Dockerfile .
+	time docker build -t local/mnist-docker -f Dockerfile-docker .
+	time docker build -t local/mnist-nvidia -f Dockerfile-nvidia .
 
 docker-run:
-#	docker run -it --gpus all --ipc=host --ulimit memlock=-1 stack=67108864 mnist-docker
+	docker run -it --gpus all --ipc=host --ulimit memlock=-1 stack=67108864 mnist-docker
 	docker run -it --gpus all --ulimit memlock=-1 local/mnist-docker
 
 
@@ -60,10 +61,19 @@ benchmark:
 
 
 b:
-	nvidia-smi
-	#docker run -it --gpus all --ulimit memlock=-1 local/mnist-docker
-	singularity exec --nv --env TAG=nvidia,CARD=RTX3090 ${NAME}-nvidia.sif python ${NAME}.py > singularity-${NAME}-nvidia.out 2>&1
-	singularity exec --nv --env TAG=docker,CARD=RTX3090 ${NAME}-docker.sif python ${NAME}.py > singularity-${NAME}-docker.out 2>&1
+	#nvidia-smi
+
+	docker run --env TAG=docker-nvidia-gpu --env CARD=RTX3090 --volume $(PWD):/workdir --gpus all --ulimit memlock=-1 local/mnist-nvidia python /workdir/mnist.py > docker-${NAME}-gpu-nvidia.out 2>&1
+	docker run --env TAG=docker-docker-gpu --env CARD=RTX3090 --volume $(PWD):/workdir --gpus all --ulimit memlock=-1 local/mnist-docker python /workdir/mnist.py > docker-${NAME}-gpu-docker.out 2>&1
+
+	docker run --env TAG=docker-nvidia-cpu --env CARD=RTX3090 --volume $(PWD):/workdir --ulimit memlock=-1 local/mnist-nvidia python /workdir/mnist.py > docker-${NAME}-cpu-nvidia.out 2>&1
+	docker run --env TAG=docker-docker-cpu --env CARD=RTX3090 --volume $(PWD):/workdir --ulimit memlock=-1 local/mnist-docker python /workdir/mnist.py > docker-${NAME}-cpu-docker.out 2>&1
+
+	singularity exec --nv --env TAG=singularity-nvidia-gpu,CARD=RTX3090 ${NAME}-nvidia.sif python ${NAME}.py > singularity-${NAME}-gpu-nvidia.out 2>&1
+	singularity exec --nv --env TAG=singularity-docker-gpu,CARD=RTX3090 ${NAME}-docker.sif python ${NAME}.py > singularity-${NAME}-gpu-docker.out 2>&1
+
+	singularity exec --env TAG=singularity-nvidia-cpu,CARD=RTX3090 ${NAME}-nvidia.sif python ${NAME}.py > singularity-${NAME}-cpu-nvidia.out 2>&1
+	singularity exec --env TAG=singularity-docker-cpu,CARD=RTX3090 ${NAME}-docker.sif python ${NAME}.py > singularity-${NAME}-cpu-docker.out 2>&1
 
 
 
