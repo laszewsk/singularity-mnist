@@ -1,7 +1,7 @@
 ## Set up TensorFlow
 #Import TensorFlow into your program to get started:
 
-
+import os
 import tensorflow as tf
 from cloudmesh.common.util import banner
 print("TensorFlow version:", tf.__version__)
@@ -9,15 +9,22 @@ print("TensorFlow version:", tf.__version__)
 from cloudmesh.common.StopWatch import StopWatch
 # from cloudmesh.gpu.gpu import Gpu
 
-print(tf.test.gpu_device_name())
-gpu_devices = tf.config.list_physical_devices('GPU')
-if gpu_devices:
-    details = tf.config.experimental.get_device_details(gpu_devices[0])
-    gpu_name = details.get('device_name', 'Unknown GPU')
-    print(gpu_name)
-    card = gpu_name
-else:
-    card = 'no gpu'
+tf.debugging.set_log_device_placement(True)
+
+os.environ["CUDA_VISIBLE_DEVICES"]="4"
+
+card = "tbd"
+
+# print(tf.test.gpu_device_name())
+# gpu_devices = tf.config.list_physical_devices('GPU')
+
+#if gpu_devices:
+#    details = tf.config.experimental.get_device_details(gpu_devices[0])
+#    gpu_name = details.get('device_name', 'Unknown GPU')
+#    print(gpu_name)
+#    card = gpu_name
+#else:
+#    card = 'no gpu'
 
 # try:
 #     import json
