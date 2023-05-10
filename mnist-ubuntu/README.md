@@ -1,8 +1,10 @@
 time Gregors machine
 
- NVIDIA-SMI 530.30.02
- Driver Version: 530.30.02
- CUDA Version: 12.1    
+RTX3090
+
+NVIDIA-SMI 530.30.02
+Driver Version: 530.30.02
+CUDA Version: 12.1    
 
 singularity
 
@@ -30,9 +32,28 @@ Dockerfile
 
 DGX
 
-Singularity
+Singularity - no GPU
 
-did not work
++------------------+----------+--------+
+| Name             | Status   |   Time |
+|------------------+----------+--------+
+| Total runtime    | ok       | 11.909 |
+| Loading in Data  | ok       |  0.221 |
+| Model Fitting    | ok       | 11.192 |
+| Model Evaluation | ok       |  0.242 |
++------------------+----------+--------+
+
+Singularity - With GPU
+
++------------------+----------+--------+
+| Name             | Status   |   Time |
+|------------------+----------+--------+
+| Total runtime    | ok       | 14.668 |
+| Loading in Data  | ok       |  0.218 |
+| Model Fitting    | ok       |  9.578 |
+| Model Evaluation | ok       |  0.331 |
++------------------+----------+--------+
+
 
 Docker
 
