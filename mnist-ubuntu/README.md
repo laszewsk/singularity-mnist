@@ -1,11 +1,14 @@
 time Gregors machine
 
- NVIDIA-SMI 530.30.02
- Driver Version: 530.30.02
- CUDA Version: 12.1    
+RTX3090
+
+NVIDIA-SMI 530.30.02
+Driver Version: 530.30.02
+CUDA Version: 12.1    
 
 singularity
 
+```
 +------------------+----------+--------+
 | Name             | Status   |   Time |
 |------------------+----------+--------+
@@ -14,10 +17,11 @@ singularity
 | Model Fitting    | ok       |  7.502 |
 | Model Evaluation | ok       |  0.238 |
 +------------------+----------+--------+
-
+```
 
 Dockerfile
 
+```
 +------------------+----------+--------+
 | Name             | Status   |   Time |
 |------------------+----------+--------+
@@ -26,13 +30,35 @@ Dockerfile
 | Model Fitting    | ok       | 12.852 |
 | Model Evaluation | ok       |  0.318 |
 +------------------+----------+--------+
+```
 
+DGX - A100
 
-DGX
+Singularity - no GPU
 
-Singularity
+```
++------------------+----------+--------+
+| Name             | Status   |   Time |
+|------------------+----------+--------+
+| Total runtime    | ok       | 11.909 |
+| Loading in Data  | ok       |  0.221 |
+| Model Fitting    | ok       | 11.192 |
+| Model Evaluation | ok       |  0.242 |
++------------------+----------+--------+
+```
 
-did not work
+Singularity - With GPU
+
+```
++------------------+----------+--------+
+| Name             | Status   |   Time |
+|------------------+----------+--------+
+| Total runtime    | ok       | 14.668 |
+| Loading in Data  | ok       |  0.218 |
+| Model Fitting    | ok       |  9.578 |
+| Model Evaluation | ok       |  0.331 |
++------------------+----------+--------+
+```
 
 Docker
 
@@ -40,6 +66,7 @@ NVIDIA-SMI 470.129.06
 Driver Version: 470.129.06
 CUDA Version: 11.4
 
+```
 +------------------+----------+--------+
 | Name             | Status   |   Time |
 |------------------+----------+--------+
@@ -48,3 +75,4 @@ CUDA Version: 11.4
 | Model Fitting    | ok       | 13.316 |
 | Model Evaluation | ok       |  0.477 |
 +------------------+----------+--------+
+```
