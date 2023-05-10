@@ -1,6 +1,10 @@
 BUILD=mnist.def
 IMAGE=mnist.sif
 
+submit:
+	sbatch slurm-rtx3090.sh
+	sinfo
+	squeue
 
 image:
 	time sudo singularity build ${IMAGE} ${BUILD}
