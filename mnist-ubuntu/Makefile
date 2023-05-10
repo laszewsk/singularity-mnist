@@ -48,26 +48,22 @@ convert:
 	spython recipe Dockerfile > s.def
 	cat s.def
 
+#benchmark:#
+#	@echo ============================
+#	@echo DOCKERFILE
+#	@echo ============================
+#	-make -f Makefile docker-mnist > docker-mnist.out 2>&1
+#	@echo
+#	@echo ============================
+#	@echo SINGULARITY
+#	@echo ============================
+#	-make -f Makefile run > run.out 2>&1
+
+broken:
+	docker run --env TAG=docker-docker-gpu --env CARD=RTX3090 --volume $(PWD):/workdir --gpus all --ulimit memlock=-1 local/mnist-docker python /workdir/mnist.py 
+
 benchmark:
-	@echo ============================
-	@echo DOCKERFILE
-	@echo ============================
-	-make -f Makefile docker-mnist > docker-mnist.out 2>&1
-	@echo
-	@echo ============================
-	@echo SINGULARITY
-	@echo ============================
-	-make -f Makefile run > run.out 2>&1
-
-
-b:
 	#nvidia-smi
-
-	docker run --env TAG=docker-nvidia-gpu --env CARD=RTX3090 --volume $(PWD):/workdir --gpus all --ulimit memlock=-1 local/mnist-nvidia python /workdir/mnist.py > docker-${NAME}-gpu-nvidia.out 2>&1
-	docker run --env TAG=docker-docker-gpu --env CARD=RTX3090 --volume $(PWD):/workdir --gpus all --ulimit memlock=-1 local/mnist-docker python /workdir/mnist.py > docker-${NAME}-gpu-docker.out 2>&1
-
-	docker run --env TAG=docker-nvidia-cpu --env CARD=RTX3090 --volume $(PWD):/workdir --ulimit memlock=-1 local/mnist-nvidia python /workdir/mnist.py > docker-${NAME}-cpu-nvidia.out 2>&1
-	docker run --env TAG=docker-docker-cpu --env CARD=RTX3090 --volume $(PWD):/workdir --ulimit memlock=-1 local/mnist-docker python /workdir/mnist.py > docker-${NAME}-cpu-docker.out 2>&1
 
 	singularity exec --nv --env TAG=singularity-nvidia-gpu,CARD=RTX3090 ${NAME}-nvidia.sif python ${NAME}.py > singularity-${NAME}-gpu-nvidia.out 2>&1
 	singularity exec --nv --env TAG=singularity-docker-gpu,CARD=RTX3090 ${NAME}-docker.sif python ${NAME}.py > singularity-${NAME}-gpu-docker.out 2>&1
@@ -75,5 +71,13 @@ b:
 	singularity exec --env TAG=singularity-nvidia-cpu,CARD=RTX3090 ${NAME}-nvidia.sif python ${NAME}.py > singularity-${NAME}-cpu-nvidia.out 2>&1
 	singularity exec --env TAG=singularity-docker-cpu,CARD=RTX3090 ${NAME}-docker.sif python ${NAME}.py > singularity-${NAME}-cpu-docker.out 2>&1
 
+	docker run --env TAG=docker-nvidia-cpu --env CARD=RTX3090 --volume $(PWD):/workdir --ulimit memlock=-1 local/mnist-nvidia python /workdir/mnist.py > docker-${NAME}-cpu-nvidia.out 2>&1
+	docker run --env TAG=docker-docker-cpu --env CARD=RTX3090 --volume $(PWD):/workdir --ulimit memlock=-1 local/mnist-docker python /workdir/mnist.py > docker-${NAME}-cpu-docker.out 2>&1
 
+	docker run --env TAG=docker-nvidia-gpu --env CARD=RTX3090 --volume $(PWD):/workdir --gpus all --ulimit memlock=-1 local/mnist-nvidia python /workdir/mnist.py > docker-${NAME}-gpu-nvidia.out 2>&1
+	#docker run --env TAG=docker-docker-gpu --env CARD=RTX3090 --volume $(PWD):/workdir --gpus all --ulimit memlock=-1 local/mnist-docker python /workdir/mnist.py > docker-${NAME}-gpu-docker.out 2>&1
 
+result:
+	@grep  -h  -e Total *.out > tmp.txt
+	@grep  -h  -v csv tmp.txt
+	@rm tmp.txt
