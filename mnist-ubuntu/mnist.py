@@ -9,11 +9,12 @@ print("TensorFlow version:", tf.__version__)
 from cloudmesh.common.StopWatch import StopWatch
 # from cloudmesh.gpu.gpu import Gpu
 
-tf.debugging.set_log_device_placement(True)
+#tf.debugging.set_log_device_placement(True)
 
-os.environ["CUDA_VISIBLE_DEVICES"]="4"
+# os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
-card = "tbd"
+tag = os.environ["TAG"]
+card = os.environ["CARD"]
 
 # print(tf.test.gpu_device_name())
 # gpu_devices = tf.config.list_physical_devices('GPU')
@@ -139,4 +140,4 @@ probability_model(x_test[:5])
 StopWatch.stop("Total runtime")
 
 
-StopWatch.benchmark(tag=card)
+StopWatch.benchmark(tag=f"{tag}:{card}", node=card, user="")

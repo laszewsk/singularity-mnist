@@ -1,3 +1,4 @@
+NAME=mnist
 BUILD=mnist.def
 IMAGE=mnist.sif
 
@@ -6,8 +7,13 @@ submit:
 	sinfo
 	squeue
 
-image:
-	time sudo singularity build ${IMAGE} ${BUILD}
+image: image-nvidia image-docker
+
+image-nvidia:
+	time sudo singularity build --force ${NAME}-nvidia.sif ${NAME}-nvidia.def
+
+image-docker:
+	time sudo singularity build --force ${NAME}-docker.sif ${NAME}-docker.def
 
 queue: watch
 
@@ -45,9 +51,19 @@ benchmark:
 	@echo ============================
 	@echo DOCKERFILE
 	@echo ============================
-	@ make -f Makefile docker-mnist
+	-make -f Makefile docker-mnist > docker-mnist.out 2>&1
 	@echo
 	@echo ============================
 	@echo SINGULARITY
 	@echo ============================
-	@ make -f Makefile run
+	-make -f Makefile run > run.out 2>&1
+
+
+b:
+	nvidia-smi
+	#docker run -it --gpus all --ulimit memlock=-1 local/mnist-docker
+	singularity exec --nv --env TAG=nvidia,CARD=RTX3090 ${NAME}-nvidia.sif python ${NAME}.py > singularity-${NAME}-nvidia.out 2>&1
+	singularity exec --nv --env TAG=docker,CARD=RTX3090 ${NAME}-docker.sif python ${NAME}.py > singularity-${NAME}-docker.out 2>&1
+
+
+
