@@ -27,6 +27,9 @@ echo "Working in $(pwd)"
 # echo "Python Version: $(singularity exec mnist.sif python --version)"
 # echo "Running on host: $(hostname -a)"
 
+module purge
+module load singularity
+
 nvidia-smi
 
 echo "hello im here"

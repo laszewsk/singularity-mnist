@@ -35,6 +35,9 @@ run-rtx3090:
 run-p100:
 	sbatch slurm-p100.sh
 
+run-gpu:
+	sbatch slurm-gpu.sh
+
 ijob:
 #	ijob -c 1 -A bii_dsc_community -p bii-gpu --reservation=bi_fox_dgx --gres=gpu:a100:1 --time=0-00:10:00
 	ijob -c 1 -A bii_dsc_community -p bii-gpu --gres=gpu:v100:1 --time=0-00:10:00
