@@ -10,6 +10,9 @@
 #SBATCH --output=v100-%u-%j.out
 #SBATCH --error=v100-%u-%j.err
 
+module purge 
+module load singularity
+
 hostname
 echo "SLURM_CPUS_ON_NODE: $SLURM_CPUS_ON_NODE"
 echo "SLURM_CPUS_PER_GPU: $SLURM_CPUS_PER_GPU"
